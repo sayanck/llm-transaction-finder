@@ -1,7 +1,4 @@
-"""
-FastAPI backend for LLM Transaction Pattern Finder.
-Provides REST API endpoints for transaction analysis.
-"""
+
 
 from fastapi import FastAPI, HTTPException, BackgroundTasks, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
