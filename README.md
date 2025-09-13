@@ -51,3 +51,56 @@ frontend/src/
 - **Responsive Design**: Tailwind CSS for modern UI
 - **Type Safety**: Full TypeScript implementation
 
+## ⚙️ Setup Guide
+
+Follow these steps to run the project locally on your machine:
+
+1. **Clone the Repository**
+```bash
+git clone https://github.com/<your-username>/llm-transaction-finder.git
+cd llm-transaction-finder
+
+cd backend
+python3 -m venv venv
+
+# Activate the environment
+# On Linux/macOS
+source venv/bin/activate
+# On Windows PowerShell
+venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Create .env file
+echo "GEMINI_API_KEY=your_gemini_api_key_here" > .env
+echo "ALLOWED_ORIGINS=http://localhost:3000" >> .env
+
+# Start FastAPI server
+uvicorn main:app --reload
+
+
+cd ../frontend
+npm install
+
+# Create .env file
+echo "REACT_APP_API_URL=http://localhost:8000" > .env
+
+# Start dev server
+npm start
+
+
+
+# Upload transaction file
+curl -X POST "http://localhost:8000/api/upload" -F "file=@Transaction_data_All.xlsx"
+
+# Get summary
+curl http://localhost:8000/api/summary
+
+# Get detected patterns
+curl http://localhost:8000/api/patterns
+
+# Run AI analysis (requires Gemini API key)
+curl -X POST http://localhost:8000/api/analyze
+
+---
