@@ -35,8 +35,8 @@ app = FastAPI(
 allowed_origins = [
     "http://localhost:3000", 
     "http://localhost:5173",
-    "https://transaction-analyzer-frontend.onrender.com" 
-    "https://llm-transaction-finder-1.onrender.com/" # Render frontend URL
+    "https://transaction-analyzer-frontend.onrender.com",
+    "https://llm-transaction-finder-1.onrender.com" # Render frontend URL
 ]
 
 # Add any additional origins from environment variable
@@ -61,7 +61,7 @@ def get_transaction_processor():
     """Get or create transaction processor instance."""
     global transaction_processor, current_data_file
     if transaction_processor is None:
-        data_path = current_data_file or os.path.join(os.path.dirname(__file__), "..", "Transaction_data_All.xlsx")
+        data_path = current_data_file or os.path.join(os.path.dirname(__file__),  "uploads/Transaction_data_All.csv")
         transaction_processor = TransactionProcessor(data_path)
     elif current_data_file and transaction_processor.file_path != current_data_file:
         transaction_processor = TransactionProcessor(current_data_file)
