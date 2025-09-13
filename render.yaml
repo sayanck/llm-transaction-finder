@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: transaction-analyzer-backend
+    env: python
+    plan: free
+    buildCommand: cd backend && pip install -r requirements.txt
+    startCommand: cd backend && python main.py
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PORT
+        value: 8000
+    healthCheckPath: /health
+    autoDeploy: true
+    branch: main
+
+  - type: web
+    name: transaction-analyzer-frontend
+    env: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://transaction-analyzer-backend.onrender.com
+    autoDeploy: true
+    branch: main

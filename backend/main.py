@@ -9,7 +9,13 @@ from fastapi.responses import JSONResponse
 import logging
 from typing import Dict, Any, Optional
 import os
+import sys
 from datetime import datetime
+
+# Add current directory to Python path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
 
 from data_processor import TransactionProcessor
 from llm_analyzer import TransactionAnalyzer
@@ -26,9 +32,20 @@ app = FastAPI(
 )
 
 # Configure CORS
+allowed_origins = [
+    "http://localhost:3000", 
+    "http://localhost:5173",
+    "https://transaction-analyzer-frontend.onrender.com" 
+    "https://llm-transaction-finder-1.onrender.com/" # Render frontend URL
+]
+
+# Add any additional origins from environment variable
+if os.getenv("ALLOWED_ORIGINS"):
+    allowed_origins.extend(os.getenv("ALLOWED_ORIGINS").split(","))
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],  # React dev servers
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -434,4 +451,5 @@ def create_mock_analysis(patterns: Dict[str, Any], summary: Dict[str, Any]) -> D
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
