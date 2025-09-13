@@ -60,6 +60,8 @@ Follow these steps to run the project locally on your machine:
 git clone https://github.com/<your-username>/llm-transaction-finder.git
 cd llm-transaction-finder
 
+2. **Backend Setup (FastAPI)**
+```bash
 cd backend
 python3 -m venv venv
 
