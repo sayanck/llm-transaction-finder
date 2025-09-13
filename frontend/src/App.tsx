@@ -96,40 +96,40 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 flex flex-col">
         {/* Navigation Header */}
         <nav className="bg-white shadow-sm border-b">
-          <div className="mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16">
-              <div className="flex">
+          <div className="mx-auto px-2 sm:px-4 lg:px-6 xl:px-8">
+            <div className="flex justify-between items-center h-14 sm:h-16">
+              <div className="flex items-center">
                 <div className="flex-shrink-0 flex items-center">
-                  <AlertTriangle className="h-8 w-8 text-primary-600" />
-                  <span className="ml-2 text-xl font-bold text-gray-900">
+                  <AlertTriangle className="h-6 w-6 sm:h-8 sm:w-8 text-primary-600" />
+                  <span className="ml-1 sm:ml-2 text-sm sm:text-lg lg:text-xl font-bold text-gray-900 truncate">
                     Transaction Pattern Finder
                   </span>
                 </div>
-                <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                <div className="hidden md:ml-6 md:flex md:space-x-6 lg:space-x-8">
                   {navigation.map((item) => (
                     <NavLink
                       key={item.name}
                       to={item.href}
                       className={({ isActive }) =>
-                        `inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                        `inline-flex items-center px-1 pt-1 border-b-2 text-xs sm:text-sm font-medium ${
                           isActive
                             ? 'border-primary-500 text-primary-600'
                             : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
                         }`
                       }
                     >
-                      <item.icon className="w-4 h-4 mr-2" />
-                      {item.name}
+                      <item.icon className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                      <span className="hidden sm:inline">{item.name}</span>
                     </NavLink>
                   ))}
                 </div>
               </div>
               
               {/* Health Status */}
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2 sm:space-x-4">
                 {/* Upload control */}
                 <div className="hidden sm:block">
                   <label className={`btn-secondary cursor-pointer ${uploading ? 'opacity-60 pointer-events-none' : ''}`}>
@@ -137,21 +137,20 @@ function App() {
                     {uploading ? 'Uploading…' : 'Upload Data'}
                   </label>
                 </div>
-                {/* {healthChecked && (
-                  <div className="flex items-center space-x-2 text-sm">
-                    {getHealthIcon()}
-                    <span className={`font-medium ${
-                      healthStatus?.status === 'healthy' ? 'text-green-700' : 'text-red-700'
-                    }`}>
-                      Backend {healthStatus?.status === 'healthy' ? 'Connected' : 'Disconnected'}
-                    </span>
-                  </div>
-                )} */}
+                
+                {/* Mobile upload button */}
+                <div className="sm:hidden">
+                  <label className={`inline-flex items-center px-2 py-1 text-xs font-medium rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 cursor-pointer ${uploading ? 'opacity-60 pointer-events-none' : ''}`}>
+                    <input type="file" accept=".csv,.xlsx,.xls" className="hidden" onChange={onUploadChange} disabled={uploading} />
+                    {uploading ? '⏳' : '📁'}
+                  </label>
+                </div>
                 
                 {healthStatus?.gemini_configured === false && (
-                  <div className="flex items-center space-x-2 text-sm text-yellow-700">
-                    <AlertTriangle className="w-4 h-4 text-yellow-500" />
-                    <span className="font-medium">AI Features Limited</span>
+                  <div className="hidden sm:flex items-center space-x-2 text-xs sm:text-sm text-yellow-700">
+                    <AlertTriangle className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-500" />
+                    <span className="font-medium hidden lg:inline">AI Features Limited</span>
+                    <span className="font-medium lg:hidden">AI Limited</span>
                   </div>
                 )}
               </div>
@@ -160,14 +159,14 @@ function App() {
         </nav>
 
         {/* Mobile Navigation */}
-        <div className="sm:hidden bg-white border-b">
+        <div className="md:hidden bg-white border-b">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navigation.map((item) => (
               <NavLink
                 key={item.name}
                 to={item.href}
                 className={({ isActive }) =>
-                  `block px-3 py-2 rounded-md text-base font-medium ${
+                  `block px-3 py-2 rounded-md text-sm font-medium ${
                     isActive
                       ? 'bg-primary-50 border-primary-500 text-primary-700'
                       : 'text-gray-500 hover:bg-gray-50 hover:text-gray-700'
@@ -175,10 +174,10 @@ function App() {
                 }
               >
                 <div className="flex items-center">
-                  <item.icon className="w-4 h-4 mr-3" />
-                  <div>
-                    <div>{item.name}</div>
-                    <div className="text-xs text-gray-500">{item.description}</div>
+                  <item.icon className="w-4 h-4 mr-3 flex-shrink-0" />
+                  <div className="min-w-0 flex-1">
+                    <div className="truncate">{item.name}</div>
+                    <div className="text-xs text-gray-500 truncate">{item.description}</div>
                   </div>
                 </div>
               </NavLink>
@@ -187,24 +186,24 @@ function App() {
         </div>
 
         {/* Main Content */}
-        <main className="flex-1">
+        <main className="flex-1 flex flex-col">
           {!hasActiveFile ? (
-            <div className="p-8 max-w-2xl mx-auto">
+            <div className="p-4 sm:p-6 lg:p-8 max-w-2xl mx-auto w-full">
               <div className="card">
                 <div className="card-header">
-                  <h3 className="text-lg font-medium text-gray-900">Upload a dataset to begin</h3>
+                  <h3 className="text-base sm:text-lg font-medium text-gray-900">Upload a dataset to begin</h3>
                 </div>
                 <div className="card-content">
-                  <p className="text-sm text-gray-600 mb-4">Upload a CSV or Excel file containing transactions. The UI will analyze and display insights based on your file.</p>
-                  <label className={`btn-primary inline-flex items-center cursor-pointer ${uploading ? 'opacity-60 pointer-events-none' : ''}`}>
+                  <p className="text-xs sm:text-sm text-gray-600 mb-4">Upload a CSV or Excel file containing transactions. The UI will analyze and display insights based on your file.</p>
+                  <label className={`btn-primary inline-flex items-center cursor-pointer w-full sm:w-auto justify-center ${uploading ? 'opacity-60 pointer-events-none' : ''}`}>
                     <input type="file" accept=".csv,.xlsx,.xls" className="hidden" onChange={onUploadChange} disabled={uploading} />
                     {uploading ? 'Uploading…' : 'Upload File'}
                   </label>
                   {uploadError && (
-                    <p className="text-sm text-red-600 mt-3">{uploadError}</p>
+                    <p className="text-xs sm:text-sm text-red-600 mt-3 break-words">{uploadError}</p>
                   )}
                   {uploading && (
-                    <p className="text-sm text-gray-600 mt-3">Please wait while we process your file…</p>
+                    <p className="text-xs sm:text-sm text-gray-600 mt-3">Please wait while we process your file…</p>
                   )}
                 </div>
               </div>
@@ -219,6 +218,13 @@ function App() {
         </main>
 
         {/* Footer */}
+        <footer className="bg-white border-t border-gray-200 mt-auto">
+          <div className="mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4">
+            <div className="text-center text-xs sm:text-sm text-gray-500">
+              <p>Created by <span className="font-medium text-gray-700">@Sayan Chakraborty</span></p>
+            </div>
+          </div>
+        </footer>
         
       </div>
     </Router>
