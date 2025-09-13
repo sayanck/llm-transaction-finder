@@ -10,7 +10,7 @@ frontend/node_modules/
 frontend/build/
 
 # Uploads, local data and OS files
-backend/uploads/
+#backend/uploads/
 Transaction_data_All.xlsx
 *.xlsx
 *.xls
