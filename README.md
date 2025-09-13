@@ -59,7 +59,7 @@ Follow these steps to run the project locally on your machine:
 ```bash
 git clone https://github.com/<your-username>/llm-transaction-finder.git
 cd llm-transaction-finder
-
+```
 2. **Backend Setup (FastAPI)**
 ```bash
 cd backend
@@ -80,8 +80,9 @@ echo "ALLOWED_ORIGINS=http://localhost:3000" >> .env
 
 # Start FastAPI server
 uvicorn main:app --reload
-
-
+```
+3. **Frontend Setup (React) **
+```bash
 cd ../frontend
 npm install
 
@@ -90,9 +91,10 @@ echo "REACT_APP_API_URL=http://localhost:8000" > .env
 
 # Start dev server
 npm start
+```
 
-
-
+4. **Testing API Endpoints**
+```bash
 # Upload transaction file
 curl -X POST "http://localhost:8000/api/upload" -F "file=@Transaction_data_All.xlsx"
 
@@ -104,5 +106,5 @@ curl http://localhost:8000/api/patterns
 
 # Run AI analysis (requires Gemini API key)
 curl -X POST http://localhost:8000/api/analyze
+```
 
----
