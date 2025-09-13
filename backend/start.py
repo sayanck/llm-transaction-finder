@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-"""
-Startup script for the LLM Transaction Pattern Finder backend.
-Provides a simple way to start the server with proper configuration.
-"""
 
 import os
 import sys
