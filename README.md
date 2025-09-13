@@ -112,4 +112,4 @@ curl -X POST http://localhost:8000/api/analyze
 *"Data tells a story, but intelligence makes it meaningful."*  
 
 ## 🌐 Live Demo
-(https://llm-transaction-finder-1.onrender.com/)
+https://llm-transaction-finder-1.onrender.com/
