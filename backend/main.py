@@ -36,6 +36,7 @@ allowed_origins = [
     "http://localhost:3000", 
     "http://localhost:5173",
     "https://transaction-analyzer-frontend.onrender.com",
+    "https://llm-transaction-finder-1.onrender.com",
      # Render frontend URL
 ]
 
