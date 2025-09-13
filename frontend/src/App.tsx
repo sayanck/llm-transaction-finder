@@ -218,13 +218,25 @@ function App() {
         </main>
 
         {/* Footer */}
-        <footer className="bg-white border-t border-gray-200 mt-auto">
-          <div className="mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4">
-            <div className="text-center text-xs sm:text-sm text-gray-500">
-              <p>Created by <span className="font-medium text-gray-700">@Sayan Chakraborty</span></p>
-            </div>
-          </div>
-        </footer>
+        {/* Footer */}
+<footer className="bg-white border-t border-gray-200 mt-auto">
+  <div className="mx-auto px-2 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4">
+    <div className="text-center text-xs sm:text-sm text-gray-500">
+      <p>
+        Created by{" "}
+        <a
+          href="https://github.com/sayanck"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-gray-700 hover:text-blue-600"
+        >
+          @Sayan Chakraborty
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>
+
         
       </div>
     </Router>
