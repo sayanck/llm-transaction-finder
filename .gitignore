@@ -1,0 +1,28 @@
+# Python
+backend/venv/
+*.pyc
+__pycache__/
+.env
+.env.local
+
+# Node
+frontend/node_modules/
+frontend/build/
+
+# Uploads, local data and OS files
+backend/uploads/
+Transaction_data_All.xlsx
+*.xlsx
+*.xls
+.DS_Store
+__MACOSX/
+
+# IDE/editor
+.vscode/
+.idea/
+run.sh
+SETUP.md
+AI_ACCURACY_IMPROVEMENTS.md
+AI_ANALYSIS_OPTIMIZATION.md
+DEPLOYMENT.md
+PROJECT_SUMMARY.md
