@@ -1,7 +1,4 @@
-"""
-LLM-based pattern analysis module using Google Gemini 2.5.
-Analyzes transaction patterns and identifies suspicious activities.
-"""
+
 
 import google.generativeai as genai
 import json
